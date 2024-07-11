@@ -1,0 +1,76 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "comma-dangle": [
+            "warn",
+            "always-multiline"
+        ],
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
+        "key-spacing": "warn",
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": "warn",
+        "react/jsx-closing-tag-location": "warn",
+        "react/jsx-curly-spacing": ["warn", { "when": "never", "children": true }],
+        "react/jsx-max-props-per-line": ["warn", { "when": "multiline" }],
+        "react/jsx-indent": ["warn", 2],
+        "react/jsx-one-expression-per-line": ["warn", { "allow": "single-child" }],
+        "react/jsx-tag-spacing": ["warn", { "beforeClosing": "never" }],
+        "react/jsx-wrap-multilines": ["warn", {
+            "declaration": "parens-new-line",
+            "assignment": "parens-new-line",
+            "return": "parens-new-line",
+            "arrow": "parens-new-line",
+            "condition": "parens-new-line"
+        }],
+        "react/react-in-jsx-scope": "off",
+        "space-infix-ops": "warn",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-extra-parens": ["warn", "all", { "ignoreJSX": "multi-line" }],
+        "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
+        "@typescript-eslint/object-curly-spacing": [
+            "warn",
+            "always",
+            { "objectsInObjects": true, "arraysInObjects": false }
+        ],
+        "@typescript-eslint/type-annotation-spacing": "warn",
+        "react/prop-types": "off"
+    }
+}

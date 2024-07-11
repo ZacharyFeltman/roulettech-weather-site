@@ -1,19 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Weather = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
+  const [forecastData, setForecastData] = useState(null);
 
-  const fetchData = async () => {
+  const fetchCurrent = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/current-forecast?city=${city}`
+        `${API_URL}/current-forecast?city=${city}`,
       );
       setWeatherData(response.data);
       console.log(response.data); //You can see all the weather data in console log
     } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchFourDay = async () => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/four-day-forecast?city=${city}`,
+      );
+      console.log(response.data);
+      setForecastData(response.data);
+    } catch(error) {
       console.error(error);
     }
   };
@@ -28,7 +41,8 @@ const Weather = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchData();
+    fetchCurrent();
+    fetchFourDay();
   };
 
   return (
@@ -55,6 +69,23 @@ const Weather = () => {
       ) : (
         <p>Loading weather data...</p>
       )}
+      {forecastData ? (
+        <>
+          <h2>{forecastData.city.name}</h2>
+        </>
+      ) : (
+        <p>Loading weather data...</p>
+      )} 
+      {forecastData ? forecastData.list.map((threeHourData) => (
+        <>
+          <p>Temperature: {threeHourData.main.temp}°C</p>
+          <p>Description: {threeHourData.weather[0].description}</p>
+          <p>Feels like : {threeHourData.main.feels_like}°C</p>
+          <p>Humidity : {threeHourData.main.humidity}%</p>
+          <p>Pressure : {threeHourData.main.pressure}</p>
+          <p>Wind Speed : {threeHourData.wind.speed}m/s</p>
+        </>
+      )) : (<p>Loading weather data...</p>)}
     </div>
   );
 };
