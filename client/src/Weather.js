@@ -9,7 +9,7 @@ const Weather = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${API_URL}/api/yourmodel/`
+        `${API_URL}/current-forecast?city=${city}`
       );
       setWeatherData(response.data);
       console.log(response.data); //You can see all the weather data in console log
@@ -18,9 +18,9 @@ const Weather = () => {
     }
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetchData();
-  }, []);
+  }, []);*/
 
   const handleInputChange = (e) => {
     setCity(e.target.value);
