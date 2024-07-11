@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Weather = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=08dd190c7c8c45f32976ddf50f81a383`
+        `${API_URL}/api/yourmodel/`
       );
       setWeatherData(response.data);
       console.log(response.data); //You can see all the weather data in console log
