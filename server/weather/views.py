@@ -8,12 +8,12 @@ from django.http import JsonResponse
 def current_forecast(request):
     city = request.GET.get('city', None)
     # Make API request here
-    response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid=08dd190c7c8c45f32976ddf50f81a383')
+    response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&appid=08dd190c7c8c45f32976ddf50f81a383')
     #return JsonResponse({'city':city})
     return JsonResponse(response.json())
     
 @api_view(['GET'])
-def four_day_forecast(request):
+def all_day_forecast(request):
     city = request.GET.get('city', None)
-    response = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?q={city}&cnt=8&units=metric&appid=08dd190c7c8c45f32976ddf50f81a383')
+    response = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?q={city}&cnt=8&units=imperial&appid=08dd190c7c8c45f32976ddf50f81a383')
     return JsonResponse(response.json())
